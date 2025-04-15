@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <h2>Nouvel Adhérent</h2>
+  <form [formGroup]="adherentForm" (ngSubmit)="onSubmit()" class="mt-4">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="nom" formControlName="nom">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('nom')?.invalid && adherentForm.get('nom')?.touched">
+          Le nom est requis
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="prenom" class="form-label">Prénom</label>
+        <input type="text" class="form-control" id="prenom" formControlName="prenom">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('prenom')?.invalid && adherentForm.get('prenom')?.touched">
+          Le prénom est requis
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('email')?.invalid && adherentForm.get('email')?.touched">
+          Veuillez entrer une adresse email valide
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="telephone" class="form-label">Téléphone</label>
+        <input type="tel" class="form-control" id="telephone" formControlName="telephone">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('telephone')?.invalid && adherentForm.get('telephone')?.touched">
+          Le numéro de téléphone est requis
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="adresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" id="adresse" formControlName="adresse">
+      <div class="invalid-feedback" *ngIf="adherentForm.get('adresse')?.invalid && adherentForm.get('adresse')?.touched">
+        L'adresse est requise
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="codePostal" class="form-label">Code Postal</label>
+        <input type="text" class="form-control" id="codePostal" formControlName="codePostal">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('codePostal')?.invalid && adherentForm.get('codePostal')?.touched">
+          Le code postal est requis
+        </div>
+      </div>
+      <div class="col-md-8 mb-3">
+        <label for="ville" class="form-label">Ville</label>
+        <input type="text" class="form-control" id="ville" formControlName="ville">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('ville')?.invalid && adherentForm.get('ville')?.touched">
+          La ville est requise
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="dateNaissance" class="form-label">Date de Naissance</label>
+        <input type="date" class="form-control" id="dateNaissance" formControlName="dateNaissance">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('dateNaissance')?.invalid && adherentForm.get('dateNaissance')?.touched">
+          La date de naissance est requise
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="dateAdhesion" class="form-label">Date d'Adhésion</label>
+        <input type="date" class="form-control" id="dateAdhesion" formControlName="dateAdhesion">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('dateAdhesion')?.invalid && adherentForm.get('dateAdhesion')?.touched">
+          La date d'adhésion est requise
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="numeroLicence" class="form-label">Numéro de Licence</label>
+        <input type="text" class="form-control" id="numeroLicence" formControlName="numeroLicence">
+        <div class="invalid-feedback" *ngIf="adherentForm.get('numeroLicence')?.invalid && adherentForm.get('numeroLicence')?.touched">
+          Le numéro de licence est requis
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="moyenPaiement" class="form-label">Moyen de Paiement</label>
+        <select class="form-select" id="moyenPaiement" formControlName="moyenPaiement">
+          <option value="">Sélectionnez un moyen de paiement</option>
+          <option *ngFor="let moyen of moyensPaiement" [value]="moyen.value">
+            {{ moyen.label }}
+          </option>
+        </select>
+        <div class="invalid-feedback" *ngIf="adherentForm.get('moyenPaiement')?.invalid && adherentForm.get('moyenPaiement')?.touched">
+          Le moyen de paiement est requis
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="submit" class="btn btn-primary" [disabled]="!adherentForm.valid">Enregistrer</button>
+    </div>
+  </form>
+</div> 
