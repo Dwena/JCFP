@@ -22,9 +22,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/jcfp', {
 // Routes
 const sallesRoutes = require('./routes/salles');
 const adherentsRoutes = require('./routes/adherents');
+const professeurRoutes = require('./routes/professeurs');
+const coursRoutes = require('./routes/cours');
 
 app.use('/api/salles', sallesRoutes);
 app.use('/api/adherents', adherentsRoutes);
+app.use('/api/professeurs', professeurRoutes);
+app.use('/api/cours', coursRoutes);
 
 // Route de base
 app.get('/', (req, res) => {
