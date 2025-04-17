@@ -1,0 +1,77 @@
+<div class="min-h-screen bg-gray-100 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- En-tête avec bouton d'ajout -->
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden mb-6">
+      <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-900">Gestion des Salles</h2>
+        <div class="flex space-x-4">
+          <button (click)="openModal()" 
+            class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Ajouter une salle
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liste des salles -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div *ngFor="let salle of salles" class="bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div id="salle.id">
+              <h3 class="text-lg font-semibold text-gray-900">{{ salle.nom }}</h3>
+              <p class="text-sm text-gray-600">{{ salle.adresse }}</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="text-indigo-600 hover:text-indigo-900" (click)="editSalle(salle)">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </button>
+              <button class="text-red-600 hover:text-red-900" (click)="deleteSalle(salle)">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Liste des cours -->
+          <div class="space-y-3">
+            <h4 class="font-medium text-gray-700">Cours programmés :</h4>
+            <div *ngFor="let cours of salle.cours" class="bg-gray-50 p-3 rounded-lg">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-sm font-medium text-gray-900">{{ cours.nom }}</p>
+                  <p class="text-xs text-gray-600">{{ cours.jour }} - {{ cours.heureDebut }} à {{ cours.heureFin }}</p>
+                  <p class="text-xs text-gray-600">Prof: {{ cours.professeur.prenom }} {{ cours.professeur.nom }}</p>
+                </div>
+                <!-- <div class="text-right">
+                  <div class="text-xs text-gray-600 mb-1">{{ cours.inscrits }}/{{ cours.capaciteMax }}</div>
+                  <button class="text-indigo-600 hover:text-indigo-900 text-xs" (click)="editCours(cours)">
+                    Modifier
+                  </button>
+                </div> -->
+              </div>
+            </div>
+            <button class="text-sm text-indigo-600 hover:text-indigo-900 mt-2" (click)="openCoursModal(salle)">
+              + Ajouter un cours
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-salle-form-modal 
+    *ngIf="showModal"
+    (close)="closeModal()"
+    (submit)="handleSubmit($event)">
+  </app-salle-form-modal>
+
+  <app-cours-form-modal 
+    *ngIf="showCoursModal"
+    (close)="closeCoursModal()"
+    (submit)="handleCoursSubmit($event)">
+  </app-cours-form-modal>
+</div> 

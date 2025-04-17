@@ -2,19 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormComponent } from '../form/form.component';
+import { Adherent } from '../../models/model';
 
-interface Adherent {
-  nom: string;
-  prenom: string;
-  email: string;
-  telephone: string;
-  adresse: string;
-  codePostal: string;
-  ville: string;
-  dateNaissance: string;
-  numeroLicence: string;
-  moyenPaiement: string;
-}
 
 @Component({
   selector: 'app-adherents-list',
@@ -26,6 +15,7 @@ export class AdherentsListComponent implements OnInit {
   showModal = false;
   adherents: Adherent[] = [
     {
+      id: 1,
       nom: 'Dupont',
       prenom: 'Jean',
       email: 'jean.dupont@example.com',
@@ -38,6 +28,7 @@ export class AdherentsListComponent implements OnInit {
       moyenPaiement: 'carte'
     },
     {
+      id: 2,
       nom: 'Martin',
       prenom: 'Sophie',
       email: 'sophie.martin@example.com',
@@ -50,6 +41,7 @@ export class AdherentsListComponent implements OnInit {
       moyenPaiement: 'cheque'
     },
     {
+      id: 3,
       nom: 'Bernard',
       prenom: 'Pierre',
       email: 'pierre.bernard@example.com',
@@ -81,6 +73,21 @@ export class AdherentsListComponent implements OnInit {
 
   onAdherentSubmit(adherent: any) {
     console.log('Nouvel adhérent:', adherent);
-    // Ici, vous pouvez ajouter la logique pour sauvegarder l'adhérent
+
+    const newAdherent: Adherent = {
+      id: this.adherents.length + 1,
+      nom: adherent.nom.trim(),
+      prenom: adherent.prenom.trim(),
+      email: adherent.email.trim(),
+      telephone: adherent.telephone.trim(),
+      adresse: adherent.adresse.trim(),
+      codePostal: adherent.codePostal.trim(),
+      ville: adherent.ville.trim(),
+      dateNaissance: adherent.dateNaissance.trim(),
+      numeroLicence: adherent.numeroLicence.trim(),
+      moyenPaiement: adherent.moyenPaiement.trim()
+    };
+
+    this.adherents.push(newAdherent);
   }
 } 
