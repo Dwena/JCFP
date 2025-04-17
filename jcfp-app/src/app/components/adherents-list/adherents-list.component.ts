@@ -89,6 +89,5 @@ export class AdherentsListComponent implements OnInit {
     };
 
     this.adherents.push(newAdherent);
-
   }
 } 

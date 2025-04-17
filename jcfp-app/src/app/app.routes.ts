@@ -3,6 +3,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AdherentsListComponent } from './components/adherents-list/adherents-list.component';
 import { SallesComponent } from './components/salles/salles.component';
 
+
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'adherents', component: AdherentsListComponent },
